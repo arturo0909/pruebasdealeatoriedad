@@ -202,9 +202,9 @@ def poker(vec, cant):
     Label(resultado,text=int(sumafe), borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=8,column=3)
 
     Label(resultado,text="TOTAL", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=20, height=1, bg="green").grid(row=8,column=0)
-    Label(resultado,text=sumatotalcont, borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=8,column=1)
-    Label(resultado,text=int(sumatotalpro), borderwidth=1, relief="solid", font=1, width=10, height=1).grid(row=8,column=2)
-    Label(resultado,text=int(sumafe), borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=8,column=3)
+    Label(resultado,text=sumatotalcont, borderwidth=1, relief="solid", font=("Arial", 10, "bold"), width=9, height=1).grid(row=8,column=1)
+    Label(resultado,text=int(sumatotalpro), borderwidth=1, relief="solid", font=("Arial", 10, "bold"), width=11, height=1).grid(row=8,column=2)
+    Label(resultado,text=int(sumafe), borderwidth=1, relief="solid", font=("Arial", 10, "bold"), width=9, height=1).grid(row=8,column=3)
 
     Label(resultado2, text="Xo", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=8, height=1, bg="green").grid(row=0,column=0)
     Label(resultado2, text=sumxo, borderwidth=1, relief="solid", font=1, width=10, height=1).grid(row=0,column=1)

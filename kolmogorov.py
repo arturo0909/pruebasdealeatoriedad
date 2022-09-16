@@ -2,6 +2,7 @@ from tkinter import *
 import random
 from tkinter import font
 from tkinter.ttk import Treeview
+from scipy.stats import ksone
 
 def kolmogorov(vec, cantvariables):
     vecpri = vec
@@ -95,12 +96,22 @@ def kolmogorov(vec, cantvariables):
         contas.append((vectorposi[i],vectorordenado[i],vectorresultado[i]))
         tabla.insert("",END,text=j, values=(contas[i]))
 
-    mayor = max(vectorresultado)
+    maximo = max(vectorresultado)
+    tabla_ks = round(ksone.ppf(1-0.05/2, cantvariables),5)
+    prueba = ""
 
     Label(resultado2, text="Max", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=8, height=1, bg="green").grid(row=0,column=0)
-    Label(resultado2, text=mayor, borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=0,column=1)
+    Label(resultado2, text=maximo, borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=0,column=1)
     Label(resultado2, text="Tabla", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=8, height=1, bg="green").grid(row=1,column=0)
+    Label(resultado2, text=tabla_ks, borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=1,column=1)
 
+    if maximo < tabla_ks:
+        prueba = "La muestra pasa la prueba"
+    else:
+        prueba = "La muestra no pasa la prueba"
+
+    Label(resultado3, text=prueba, font=("Arial", 10, "bold")).pack()
+    
     ventkolmo.geometry('800x500')
     ventkolmo.mainloop()
 
