@@ -82,9 +82,6 @@ def kolmogorov(vec, cantvariables):
 
         recta = round(j/cantvariables,5)
         vectorposi.append(recta)
-        #print(vector[i])
-        #tabla.insert("",END,text=j, values=(recta))
-        #print(vectorposi[i])
 
     vectorordenado =  sorted(vector)
 
@@ -115,5 +112,3 @@ def kolmogorov(vec, cantvariables):
     
     ventkolmo.geometry('800x500')
     ventkolmo.mainloop()
-
-#la prueba pasa cuando el maximo es menor al de la tabla
