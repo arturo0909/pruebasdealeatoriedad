@@ -1,4 +1,4 @@
-from faulthandler import disable
+from cProfile import label
 from tkinter import *
 import poker as pk
 import kolmogorov as kol
@@ -8,6 +8,9 @@ import random
 
 principal = Tk()
 
+
+Label(principal, text="Pruebas de Aleatoriedad",font=("Arial", 40, "bold"), pady=30).pack()
+
 marco1 = Frame(principal)
 marco1.place(x=50, y=200)
 marco1.config(width=100,height=200)
@@ -16,12 +19,18 @@ marco2 = Frame(principal)
 marco2.place(x=500, y=200)
 marco2.config(width=100,height=200)
 
+marco3 = Frame(principal)
+marco3.config(width=300,height=40)
+marco3.pack()
+
 btnpoker = Button(marco2,text="Prueba poker", width=20, height=2, state="disable")
 btnpromedio = Button(marco2,text="Prueba promedio", width=20, height=2, state="disable")
 btnks = Button(marco2,text="Prueba Kolmogorov", width=20, height=2, state="disable")
 btnpoker.grid(row=0,column=0, pady=10)
 btnpromedio.grid(row=1,column=0, pady=10)
 btnks.grid(row=2,column=0, pady=10)
+
+
 
     
 
@@ -40,7 +49,7 @@ scrollable_frame.bind(
 canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
 canvas.configure(yscrollcommand=scrollbar.set)
 
-Label(principal, text="Pruebas de Aleatoriedad",font=("Arial", 40, "bold"), pady=30).pack()
+
 
 def btn_pk(vec,cant):
     btnpoker.config(command=(lambda: pk.poker(vec,cant)))
@@ -62,7 +71,7 @@ def btn_ks(vec,cant):
 def datos(cantvariables):
     fila = 0
     columna = 0
-    vector = []
+    vectorpk = []
     vectork = []
     vectorp = []
     
@@ -74,7 +83,7 @@ def datos(cantvariables):
         elif string.find("1.") == 0:
             new_string = (string.replace('1.', ''))
         
-        vector.append(new_string)
+        vectorpk.append(new_string)
         vectork.append(string)
         vectorp.append(string)
         
@@ -96,20 +105,19 @@ def datos(cantvariables):
             if columna >= calculo and columna <=10:
                 fila += 1
                 columna = 0
+  
 
     canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
 
-    btn_pk(vector,cantvariables)
+    btn_pk(vectorpk,cantvariables)
     btn_promedio(vectork,cantvariables)
     btn_ks(vectorp,cantvariables)
     
 
 
     
-marco3 = Frame(principal)
-marco3.config(width=300,height=40)
-marco3.pack()
+
 
 
 
