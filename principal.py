@@ -1,3 +1,4 @@
+from faulthandler import disable
 from tkinter import *
 import poker as pk
 import kolmogorov as kol
@@ -10,6 +11,19 @@ principal = Tk()
 marco1 = Frame(principal)
 marco1.place(x=50, y=200)
 marco1.config(width=100,height=200)
+
+marco2 = Frame(principal)
+marco2.place(x=500, y=200)
+marco2.config(width=100,height=200)
+
+btnpoker = Button(marco2,text="Prueba poker", width=20, height=2, state="disable")
+btnpromedio = Button(marco2,text="Prueba promedio", width=20, height=2, state="disable")
+btnks = Button(marco2,text="Prueba Kolmogorov", width=20, height=2, state="disable")
+btnpoker.grid(row=0,column=0, pady=10)
+btnpromedio.grid(row=1,column=0, pady=10)
+btnks.grid(row=2,column=0, pady=10)
+
+    
 
 canvas = Canvas(marco1,width=380)
 scrollbar = Scrollbar(marco1, orient="vertical", command=canvas.yview)
@@ -28,7 +42,22 @@ canvas.configure(yscrollcommand=scrollbar.set)
 
 Label(principal, text="Pruebas de Aleatoriedad",font=("Arial", 40, "bold"), pady=30).pack()
 
+def btn_pk(vec,cant):
+    btnpoker.config(command=(lambda: pk.poker(vec,cant)))
+    if cant >= 30:
+        btnpoker["state"] = "normal"
+    else:
+        btnpoker["state"] = "disabled"
 
+def btn_promedio(vec,cant):
+    btnpromedio.config(command=(lambda: p.promedio(vec,cant)))
+    if cant < 30:
+        btnpromedio["state"] = "normal"
+    else:
+        btnpromedio["state"] = "disabled"
+
+def btn_ks(vec,cant):
+    btnks.config(command=(lambda: kol.kolmogorov(vec,cant)),state="normal")
 
 def datos(cantvariables):
     fila = 0
@@ -71,23 +100,11 @@ def datos(cantvariables):
     canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
 
-    marco2 = Frame(principal)
-    marco2.place(x=500, y=200)
-    marco2.config(width=100,height=200)
+    btn_pk(vector,cantvariables)
+    btn_promedio(vectork,cantvariables)
+    btn_ks(vectorp,cantvariables)
+    
 
-
-
-    btnpromedio = Button(marco2,text="Prueba promedio", width=20, height=2, command=(lambda: p.promedio(vectorp,cantvariables))).grid(row=0,column=0,pady=10, padx=10)
-
-    btnpoker = Button(marco2,text="Prueba poker", width=20, height=2, command=(lambda: pk.poker(vector,cantvariables)))
-    if cantvariables >= 30:
-        btnpoker.grid(row=2,column=0,pady=10, padx=10)
-        btnpoker["state"] = "normal"
-    else:
-        btnpoker.grid(row=2,column=0,pady=10, padx=10)
-        btnpoker["state"] = "disabled"
-
-    btnprueba = Button(marco2,text="Prueba Kolmogorov", width=20, height=2,command=(lambda: kol.kolmogorov(vectork,cantvariables))).grid(row=8,column=0,pady=10, padx=10)
 
     
 marco3 = Frame(principal)
@@ -98,6 +115,7 @@ marco3.pack()
 
 Label(marco3,text="Digite la cantidad de numeros aleatorios:",font=("Arial", 15)).grid(row=0,column=0, padx=10)
 cantidad = IntVar()
+cantidad.set("")
 cant = Entry(marco3, textvariable=cantidad).grid(row=0,column=1, padx=10)
 
 Button(marco3, text="Ingresar", command=(lambda:datos(cantidad.get()))).grid(row=0,column=3)

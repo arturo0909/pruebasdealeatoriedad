@@ -5,9 +5,14 @@ def poker(vec, cant):
     vector = vec
     cantvariables = cant
     vent2 = Tk()
-    vent2.geometry('1100x500')
+    vent2.geometry('1130x500')
+
+    resuletiqueta = Frame(vent2)
+    resuletiqueta.place(x=660, y=110)
+    resuletiqueta.config(width=100,height=5,bg="blue")
+
     resultado = Frame(vent2)
-    resultado.place(x=660, y=120)
+    resultado.place(x=660, y=130)
     resultado.config(width=100,height=100,bg="blue")
 
     resultado2 = Frame(vent2)
@@ -133,78 +138,37 @@ def poker(vec, cant):
     canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
        
-    vecposi = ['TD',"1P","2P","T","F","PK","Q"]
+    vecposi = ["Todos diferentes (TD)","Un par (1P)","Dos pares (2P)","Tercia (T)","Full (F)","Poker (PK)","Quintilla (Q)"]
     vecconte = [contartd,contar1p,contar2p,contart,contarf,contarpk,contarq]
     vecprob = [0.3024,0.504,0.108,0.072,0.009,0.0045,0.0001]
     
-
-    
-    #Label(resultado,text="FO").grid(row=0,column=1)
     fe = []
     xo = []
     sumxo = 0
     x=1
     for x in range(7):
-        """#Label(resultado,text="Posibilidad").grid(row=0,column=0)
-        Label(resultado,text=vecposi[x], borderwidth=1, relief="solid", font=1, width=8, height=1, bg="green").grid(row=x,column=0)
-        #Label(resultado,text="FO").grid(row=0,column=1)
-        Label(resultado,text=vecconte[x], borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=x,column=1)
-        #Label(resultado,text="Probabilidad").grid(row=0,column=2)
-        Label(resultado,text=vecprob[x], borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=x,column=2) """
+        Label(resultado,text=vecposi[x], borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=20, height=1, bg="green").grid(row=x,column=0)
+        Label(resultado,text=vecconte[x], borderwidth=1, relief="solid", font=1, width=9, height=1).grid(row=x,column=1)
+        Label(resultado,text=vecprob[x], borderwidth=1, relief="solid", font=1, width=11, height=1).grid(row=x,column=2)
         fe.append(round(vecprob[x]*cantvariables,5))
-        #Label(resultado,text="FE").grid(row=0,column=3)
-        #Label(resultado,text=fe[x], borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=x,column=3)
-
+        Label(resultado,text=fe[x], borderwidth=1, relief="solid", font=1, width=9, height=1).grid(row=x,column=3)
         xo.append(((vecconte[x]-fe[x])**2)/fe[x])
         
-    Label(resultado,text="Posibilidad", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=20, height=1, bg="green").grid(row=0,column=0)
-    Label(resultado,text="Todos diferentes (TD)", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=20, height=1, bg="green").grid(row=1,column=0)
-    Label(resultado,text="Un par (1P)", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=20, height=1, bg="green").grid(row=2,column=0)
-    Label(resultado,text="Dos pares (2P)", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=20, height=1, bg="green").grid(row=3,column=0)
-    Label(resultado,text="Tercia (T)", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=20, height=1, bg="green").grid(row=4,column=0)
-    Label(resultado,text="Full (F)", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=20, height=1, bg="green").grid(row=5,column=0)
-    Label(resultado,text="Poker (PK)", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=20, height=1, bg="green").grid(row=6,column=0)
-    Label(resultado,text="Quintilla (Q)", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=20, height=1, bg="green").grid(row=7,column=0)
-
+    Label(resuletiqueta,text="Posibilidad", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=20, height=1, bg="green").grid(row=0,column=0)
+    Label(resuletiqueta,text="FO", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=9, height=1, bg="green").grid(row=0,column=1)
+    Label(resuletiqueta,text="Probabilidad", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=11, height=1, bg="green").grid(row=0,column=2)
+    Label(resuletiqueta,text="FE", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=9, height=1, bg="green").grid(row=0,column=3)
+    
     sumatotalcont = sum(vecconte)
-    Label(resultado,text="FO", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=8, height=1, bg="green").grid(row=0,column=1)
-    Label(resultado,text=contartd, borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=1,column=1)
-    Label(resultado,text=contar1p, borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=2,column=1)
-    Label(resultado,text=contar2p, borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=3,column=1)
-    Label(resultado,text=contart, borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=4,column=1)
-    Label(resultado,text=contarf, borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=5,column=1)
-    Label(resultado,text=contarpk, borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=6,column=1)
-    Label(resultado,text=contarq, borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=7,column=1)
-    Label(resultado,text=sumatotalcont, borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=8,column=1)
     sumatotalpro = round(sum(vecprob),0)
-    Label(resultado,text="Probabilidad", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=10, height=1, bg="green").grid(row=0,column=2)
-    Label(resultado,text="0.3024", borderwidth=1, relief="solid", font=1, width=10, height=1).grid(row=1,column=2)
-    Label(resultado,text="0.504", borderwidth=1, relief="solid", font=1, width=10, height=1).grid(row=2,column=2)
-    Label(resultado,text="0.108", borderwidth=1, relief="solid", font=1, width=10, height=1).grid(row=3,column=2)
-    Label(resultado,text="0.072", borderwidth=1, relief="solid", font=1, width=10, height=1).grid(row=4,column=2)
-    Label(resultado,text="0.009", borderwidth=1, relief="solid", font=1, width=10, height=1).grid(row=5,column=2)
-    Label(resultado,text="0.0045", borderwidth=1, relief="solid", font=1, width=10, height=1).grid(row=6,column=2)
-    Label(resultado,text="0.0001", borderwidth=1, relief="solid", font=1, width=10, height=1).grid(row=7,column=2)
-    Label(resultado,text=int(sumatotalpro), borderwidth=1, relief="solid", font=1, width=10, height=1).grid(row=8,column=2)    
-    
-    
     sumafe = round(sum(fe),0)
     sumxo = round(sum(xo),5)
 
-    Label(resultado,text="FE", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=8, height=1, bg="green").grid(row=0,column=3)
-    Label(resultado,text=fe[0], borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=1,column=3)
-    Label(resultado,text=fe[1], borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=2,column=3)
-    Label(resultado,text=fe[2], borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=3,column=3)
-    Label(resultado,text=fe[3], borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=4,column=3)
-    Label(resultado,text=fe[4], borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=5,column=3)
-    Label(resultado,text=fe[5], borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=6,column=3)
-    Label(resultado,text=fe[6], borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=7,column=3)
-    Label(resultado,text=int(sumafe), borderwidth=1, relief="solid", font=1, width=8, height=1).grid(row=8,column=3)
-
+    
     Label(resultado,text="TOTAL", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=20, height=1, bg="green").grid(row=8,column=0)
-    Label(resultado,text=sumatotalcont, borderwidth=1, relief="solid", font=("Arial", 10, "bold"), width=9, height=1).grid(row=8,column=1)
-    Label(resultado,text=int(sumatotalpro), borderwidth=1, relief="solid", font=("Arial", 10, "bold"), width=11, height=1).grid(row=8,column=2)
-    Label(resultado,text=int(sumafe), borderwidth=1, relief="solid", font=("Arial", 10, "bold"), width=9, height=1).grid(row=8,column=3)
+    Label(resultado,text=sumatotalcont, borderwidth=1, relief="solid", font=("Arial", 11, "bold"), width=9, height=1).grid(row=8,column=1)
+    Label(resultado,text=int(sumatotalpro), borderwidth=1, relief="solid", font=("Arial", 11, "bold"), width=11, height=1).grid(row=8,column=2)
+    Label(resultado,text=int(sumafe), borderwidth=1, relief="solid", font=("Arial", 11, "bold"), width=9, height=1).grid(row=8,column=3)
 
     Label(resultado2, text="Xo", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=8, height=1, bg="green").grid(row=0,column=0)
     Label(resultado2, text=sumxo, borderwidth=1, relief="solid", font=1, width=10, height=1).grid(row=0,column=1)

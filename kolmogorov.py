@@ -55,6 +55,7 @@ def kolmogorov(vec, cantvariables):
     canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
 
+
     i=1
     sol = 0
     fila = 0
