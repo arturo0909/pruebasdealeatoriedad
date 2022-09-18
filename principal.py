@@ -32,26 +32,6 @@ btnpromedio.grid(row=1,column=0, pady=10)
 btnks.grid(row=2,column=0, pady=10)
 
 
-
-    
-
-'''canvas = Canvas(marco1,width=380)
-scrollbar = Scrollbar(marco1, orient="vertical", command=canvas.yview)
-scrollable_frame = Frame(canvas)
-
-scrollable_frame.bind(
-    "<Configure>",
-    lambda e: canvas.configure(
-        scrollregion=canvas.bbox("all")
-    )
-)
-
-
-canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
-canvas.configure(yscrollcommand=scrollbar.set)'''
-
-
-
 def btn_pk(vec,cant):
     btnpoker.config(command=(lambda: pk.poker(vec,cant)))
     if cant >= 30:
@@ -66,8 +46,6 @@ def btn_ks(vec,cant):
     btnks.config(command=(lambda: kol.kolmogorov(vec,cant)),state="normal")
 
 def datos(cantvariables):
-    '''fila = 0
-    columna = 0'''
     vectorpk = []
     vectork = []
     vectorp = []
@@ -82,52 +60,19 @@ def datos(cantvariables):
         
         vectorpk.append(new_string)
         vectork.append(string)
-        vectorp.append(string)
-        
-        '''if columna == 5:
-            columna = 0
-            fila +=1'''     
+        vectorp.append(string)  
             
         listbox = Listbox(marco1)
         listbox.grid(row=0, column=0)
         
+        
         #for i in range(cantvariables):
         listbox.insert(0, *vectork)
-            
-        '''label = Label(scrollable_frame,text=rand, borderwidth=1, relief="solid", font=1,width=7, height=1)
-        label.grid(row = fila, column = columna)
-        '''
-            
-    
-    
-        
-        
-        '''if (cantvariables%2)==0:
-            columna += 1
-            calculo = cantvariables/2
-            if columna >= calculo:
-                fila += 1
-                columna = 0
-        elif (cantvariables%2)==1:
-            columna += 1
-            calculo = cantvariables/2
-            if columna >= calculo and columna <=10:
-                fila += 1
-                columna = 0'''
-  
-
-    '''canvas.pack(side="left", fill="both", expand=True)
-    scrollbar.pack(side="right", fill="y")'''
+        listbox.config(borderwidth=1, relief="solid", font=1)
 
     btn_pk(vectorpk,cantvariables)
     btn_promedio(vectork,cantvariables)
     btn_ks(vectorp,cantvariables)
-    
-
-
-    
-
-
 
 
 Label(marco3,text="Digite la cantidad de numeros aleatorios:",font=("Arial", 15)).grid(row=0,column=0, padx=10)
