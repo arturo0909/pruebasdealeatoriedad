@@ -1,6 +1,7 @@
 from cProfile import label
 from tkinter import *
 import poker as pk
+from tkinter.ttk import Treeview
 import kolmogorov as kol
 import promedio as p
 from decimal import Decimal
@@ -34,7 +35,7 @@ btnks.grid(row=2,column=0, pady=10)
 
     
 
-canvas = Canvas(marco1,width=380)
+'''canvas = Canvas(marco1,width=380)
 scrollbar = Scrollbar(marco1, orient="vertical", command=canvas.yview)
 scrollable_frame = Frame(canvas)
 
@@ -47,7 +48,7 @@ scrollable_frame.bind(
 
 
 canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
-canvas.configure(yscrollcommand=scrollbar.set)
+canvas.configure(yscrollcommand=scrollbar.set)'''
 
 
 
@@ -59,18 +60,14 @@ def btn_pk(vec,cant):
         btnpoker["state"] = "disabled"
 
 def btn_promedio(vec,cant):
-    btnpromedio.config(command=(lambda: p.promedio(vec,cant)))
-    if cant < 30:
-        btnpromedio["state"] = "normal"
-    else:
-        btnpromedio["state"] = "disabled"
+    btnpromedio.config(command=(lambda: p.promedio(vec,cant)), state="normal")
 
 def btn_ks(vec,cant):
     btnks.config(command=(lambda: kol.kolmogorov(vec,cant)),state="normal")
 
 def datos(cantvariables):
-    fila = 0
-    columna = 0
+    '''fila = 0
+    columna = 0'''
     vectorpk = []
     vectork = []
     vectorp = []
@@ -87,13 +84,25 @@ def datos(cantvariables):
         vectork.append(string)
         vectorp.append(string)
         
-        if columna == 5:
+        '''if columna == 5:
             columna = 0
-            fila +=1
+            fila +=1'''     
             
-        label = Label(scrollable_frame,text=rand, borderwidth=1, relief="solid", font=1,width=8, height=1).grid(row = fila, column = columna)
+        listbox = Listbox(marco1)
+        listbox.grid(row=0, column=0)
         
-        if (cantvariables%2)==0:
+        #for i in range(cantvariables):
+        listbox.insert(0, *vectork)
+            
+        '''label = Label(scrollable_frame,text=rand, borderwidth=1, relief="solid", font=1,width=7, height=1)
+        label.grid(row = fila, column = columna)
+        '''
+            
+    
+    
+        
+        
+        '''if (cantvariables%2)==0:
             columna += 1
             calculo = cantvariables/2
             if columna >= calculo:
@@ -104,11 +113,11 @@ def datos(cantvariables):
             calculo = cantvariables/2
             if columna >= calculo and columna <=10:
                 fila += 1
-                columna = 0
+                columna = 0'''
   
 
-    canvas.pack(side="left", fill="both", expand=True)
-    scrollbar.pack(side="right", fill="y")
+    '''canvas.pack(side="left", fill="both", expand=True)
+    scrollbar.pack(side="right", fill="y")'''
 
     btn_pk(vectorpk,cantvariables)
     btn_promedio(vectork,cantvariables)
@@ -123,10 +132,17 @@ def datos(cantvariables):
 
 Label(marco3,text="Digite la cantidad de numeros aleatorios:",font=("Arial", 15)).grid(row=0,column=0, padx=10)
 cantidad = IntVar()
+cantt = IntVar()
 cantidad.set("")
-cant = Entry(marco3, textvariable=cantidad).grid(row=0,column=1, padx=10)
 
-Button(marco3, text="Ingresar", command=(lambda:datos(cantidad.get()))).grid(row=0,column=3)
+
+cant = Entry(marco3, textvariable=cantidad).grid(row=0,column=1, padx=10)
+cantt=cantidad
+
+Button(marco3, text="Ingresar", command=(lambda:[datos(cantidad.get())])).grid(row=0,column=3)
+
+
+    
 
 
 principal.geometry('700x500')
