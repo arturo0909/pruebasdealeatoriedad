@@ -1,5 +1,6 @@
 from math import sqrt
 from tkinter import *
+from scipy.stats import t
 
 def promedio(vecp, cant):
     ventpro = Tk()
@@ -60,8 +61,8 @@ def promedio(vecp, cant):
         j = i+1
 
     x = round(sum(vectorp)/cant,5)
-    zo = round(((x-0.5)*sqrt(cant))/sqrt(1/12),5)
-    z2 = round(zo/2,5)
+    zo = abs(round(((x-0.5)*sqrt(cant))/sqrt(1/12),5))
+    z2=abs(round(t.ppf(0.025, cant),5))
     prueba = ""
 
     Label(resultado, text="x", borderwidth=1, relief="solid", font=("Arial",11,"bold"), width=8, height=1, bg="green").grid(row=0,column=0)
